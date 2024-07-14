@@ -18,9 +18,9 @@ Mit ```/weather``` können Informationen über das Wetter abgerufen werden darun
 - Eine Beschreibung der Wetterlage
 
 dann noch dasselbe für die nächsten 3 Stunden.
-Hier ein Bild vom Command:
-<img src=".github/command.png">
-Und dann noch in den Nächsten 3 Stunden:
+Hier ein Bild vom Command:  
+<img src=".github/command.png">  
+Und dann noch in den Nächsten 3 Stunden:  
 <img src=".github/three_hours.png">
 
 Man kann per Button immer wieder von der jetzigen Wettervorhersage zur der in den nächsten 3 Stunden springen.
