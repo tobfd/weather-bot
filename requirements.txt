@@ -3,3 +3,4 @@ ezcord
 python-dotenv
 pyowm
 translate
+setuptools

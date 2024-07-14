@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 from ezcord import codeblock
 from pyowm import OWM
 from pyowm.utils import timestamps
-from pyowm.weatherapi25 import Weather as WeatherClass
 from translate import Translator
 
 load_dotenv()
@@ -35,7 +34,7 @@ async def get_view(
     sunrise: str,
     sunset: str,
     forecast: bool = False,
-    original_weather: WeatherClass | None = None,
+    original_weather=None,
 ) -> discord.ui.View:
     if forecast:
         label = "Jetzt"
@@ -51,7 +50,7 @@ async def get_view(
 
 
 async def get_weather_embed(
-    weather: WeatherClass, city: str, sunrise: str, sunset: str, three_hours: bool = False
+    weather, city: str, sunrise: str, sunset: str, three_hours: bool = False
 ) -> discord.Embed:
     temperaturen = weather.temperature("celsius")
     temp = round(int(temperaturen.get("temp")))
@@ -103,7 +102,7 @@ class Weather(
             observation = mgr.weather_at_place(city)
         except pyowm.commons.exceptions.NotFoundError:
             return await ctx.error(f"Die Stadt **{city}** konnte nicht gefunden werden.")
-        weather: WeatherClass = observation.weather
+        weather = observation.weather
         sunrise = discord.utils.format_dt(weather.sunrise_time(timeformat="date"), "T")
         sunset = discord.utils.format_dt(weather.sunset_time(timeformat="date"), "T")
         embed = await get_weather_embed(weather, city, sunrise, sunset)
@@ -122,7 +121,7 @@ class ForecastButton(discord.ui.Button):
         label: str,
         sunrise: str,
         sunset: str,
-        weather: WeatherClass,
+        weather,
         style: discord.ButtonStyle | None = discord.ButtonStyle.primary,
     ):
         super().__init__(label=label, style=style, custom_id="forecast_button")
@@ -137,7 +136,7 @@ class ForecastButton(discord.ui.Button):
             three_hours = False
         else:
             prognose = mgr.forecast_at_place(self.city, "3h")
-            response: WeatherClass = prognose.get_weather_at(timestamps.next_three_hours())
+            response = prognose.get_weather_at(timestamps.next_three_hours())
             weather = response
             three_hours = True
         embed = await get_weather_embed(
