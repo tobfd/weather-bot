@@ -32,7 +32,7 @@ Der Bot wurde im Zusammenhang mit dem Hackathon von [Kevin Chromik](https://www.
 ````
 pip install -r requirements.txt
 ````
-2.
-Eine ``.env`` erstellen und Token aus dem Discord Developer Portal einfügen und den API KEY von OPWM siehe ``.env.example``.
+2.  
+Eine ``.env`` erstellen und Token aus dem Discord Developer Portal einfügen und den API KEY von OPWM siehe ``.env.example``.  
 3.
 DIe ``main.py`` starten.
