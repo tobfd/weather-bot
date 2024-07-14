@@ -8,7 +8,7 @@ load_dotenv()
 TOKEN = os.getenv("TOKEN")
 
 bot = ezcord.Bot(intents=discord.Intents.all())
-bot.add_help_command()
+bot.add_help_command(ephemeral=False)
 bot.add_status_changer(
     [
         discord.CustomActivity(name="💻 Kevins Hackathon"),

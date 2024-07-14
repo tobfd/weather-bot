@@ -76,7 +76,7 @@ async def get_weather_embed(
         value=codeblock(str(round(int(weather.wind("km_hour").get("speed")))) + " Km/h"),
     )
     embed.add_field(name="", value="")  # Kategorisierung
-    embed.add_field(name="", value="", inline=False)  # Abstand von Zeile 1 bis Zeile 2
+    embed.add_field(name="", value="", inline=False)  # Abstand von Zeile 2 bis Zeile 3
     embed.add_field(name="🌄 Sonnenaufgang", value=sunrise)
     embed.add_field(name="🌇 Sonnenuntergang", value=sunset)
     embed.add_field(name="", value="")  # Kategorisierung
@@ -99,7 +99,6 @@ class Weather(
     @slash_command(description="Hier erhältst du alle Informationen über das Wetter")
     @option(name="city", description="Von welcher Stadt möchtest du das Wetter wissen?")
     async def weather(self, ctx: ezcord.EzContext, city: str):
-        await ctx.defer(ephemeral=False)
         try:
             observation = mgr.weather_at_place(city)
         except pyowm.commons.exceptions.NotFoundError:
@@ -133,7 +132,6 @@ class ForecastButton(discord.ui.Button):
         self.weather = weather
 
     async def callback(self, interaction: Interaction):
-        await interaction.response.defer()
         if self.style == discord.ButtonStyle.secondary:
             weather = self.weather
             three_hours = False
