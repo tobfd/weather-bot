@@ -1,0 +1,5 @@
+py-cord
+ezcord
+python-dotenv
+pyowm
+translate
